@@ -19,11 +19,11 @@
         android:textColor="@color/black"/>
 
     <LinearLayout
+        android:id="@+id/linkPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ImageView
-            android:id="@+id/imagePhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/iconfinder_ic_local_phone_48px_352510"/>
@@ -36,11 +36,11 @@
             android:textColor="@color/black"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/linkEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ImageView
-            android:id="@+id/imageEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/iconfinder_mail_1814108"/>
