@@ -1,12 +1,9 @@
 <resources>
     <string name="app_name">MyContacts</string>
-    <string name="contac_phone">064567890</string>
-    <string name="contac_name1">Pedro Sanchez</string>
-    <string name="contac_email1">pedroSanchez@gmail.com</string>
-    <string name="contac_name2">Pablo Iglesias</string>
-    <string name="contac_email2">pabloIglesias@gmail.com</string>
-    <string name="contac_name3">Pablo Casado</string>
-    <string name="contac_email3">pabloCasado@gmail.com</string>
-    <string name="contac_name4">Santiago Abascal</string>
-    <string name="contac_email4">santiagoAbascal@gmail.com</string>
+    <string name="create_order_title">Crear</string>
+    <string name="text_name">Name</string>
+    <string name="text_email">Email</string>
+    <string name="text_phone">Phone</string>
+    <string name="title_newContact">New Contact</string>
+    <string name="button_save">Save</string>
 </resources>

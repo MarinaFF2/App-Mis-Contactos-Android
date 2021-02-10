@@ -1,6 +1,7 @@
 package com.example.mycontacts;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import android.view.KeyEvent;
@@ -11,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -27,9 +29,23 @@ public class ContactDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_detail);
 
+        aniadimosMenu();
         rellenarActivity();
         llamarEvent();
         emailEvent();
+    }
+
+    private void aniadimosMenu() {
+        //añadimos el action bar a la activity
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    //crea las opciones del menu
+    public boolean onCreateOptionsMenu(Menu menu){
+        //añadimos el menu
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
     private void rellenarActivity() {
         contact = (Contact) getIntent().getSerializableExtra("Contact");
@@ -38,9 +54,9 @@ public class ContactDetailActivity extends AppCompatActivity {
         textPhone = (TextView) findViewById(R.id.textPhone);
         textEmail = (TextView) findViewById(R.id.textEmail);
 
-        textName.setText(contact.getNombreID());
-        textPhone.setText(contact.getPhoneID());
-        textEmail.setText(contact.getEmailID());
+        textName.setText(contact.getNombre());
+        textPhone.setText(contact.getPhone());
+        textEmail.setText(contact.getEmail());
     }
 
     private void llamarEvent() {

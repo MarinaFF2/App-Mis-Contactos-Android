@@ -8,6 +8,9 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <include layout="@layout/toolbar_main"
+        android:id="@+id/toolbar"/>
+
     <ListView
         android:id="@+id/list_contacts"
         android:layout_width="match_parent"

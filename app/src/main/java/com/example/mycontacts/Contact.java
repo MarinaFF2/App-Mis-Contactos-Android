@@ -3,40 +3,41 @@ package com.example.mycontacts;
 import java.io.Serializable;
 
 public class Contact implements Serializable {
-    private int nombreID;
+
     private String nombre;
-    private int phoneID;
-    private int emailID;
+    private String phone;
+    private String email;
 
-    public Contact(int nombreID,String nombre, int phoneID, int emailID) {
-        this.nombreID = nombreID;
+    public Contact(String nombre, String phone, String email) {
         this.nombre = nombre;
-        this.phoneID = phoneID;
-        this.emailID = emailID;
+        this.phone = phone;
+        this.email = email;
+    }
+    public Contact() {
     }
 
-    public int getNombreID() {
-        return nombreID;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreID(int nombreID) {
-        this.nombreID = nombreID;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public int getPhoneID() {
-        return phoneID;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneID(int phoneID) {
-        this.phoneID = phoneID;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public int getEmailID() {
-        return emailID;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailID(int emailID) {
-        this.emailID = emailID;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
