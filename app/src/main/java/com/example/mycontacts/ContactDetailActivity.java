@@ -41,12 +41,6 @@ public class ContactDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
-    //crea las opciones del menu
-    public boolean onCreateOptionsMenu(Menu menu){
-        //añadimos el menu
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
     private void rellenarActivity() {
         contact = (Contact) getIntent().getSerializableExtra("Contact");
 

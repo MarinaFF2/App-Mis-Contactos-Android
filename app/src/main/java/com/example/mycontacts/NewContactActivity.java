@@ -33,7 +33,7 @@ public class NewContactActivity extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //if (!editName.getText().toString().equals("") && !editPhone.getText().toString().equals("") && !editEmail.getText().toString().equals("")) {
+                if (!editName.getText().toString().equals("") && !editPhone.getText().toString().equals("") && !editEmail.getText().toString().equals("")) {
                     Log.e("myTag", "Pasado boton SAVE");
                     Contact contact = new Contact();
                     contact.setNombre(editName.getText().toString());
@@ -44,9 +44,9 @@ public class NewContactActivity extends AppCompatActivity {
                     returnIntent.putExtra("Contact", contact);
                     setResult(Activity.RESULT_OK, returnIntent);
                     finish();
-                //} else {
+                } else {
                     //mensaje de rellenar los campos
-                //}
+                }
             }
         });
     }

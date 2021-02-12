@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
      * @return
      */
     public boolean onCreateOptionsMenu(Menu menu){
-        //añadimos el menu
+        //añadimos el menu el add
         getMenuInflater().inflate(R.menu.menu_add, menu);
 
         return super.onCreateOptionsMenu(menu);
@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.action_create_order: //si pulsamos en el +
-                int LAUNCH_SECOND_ACTIVITY = 1;
                 Intent i = new Intent(this, NewContactActivity.class);
                 startActivityForResult(i, LAUNCH_SECOND_ACTIVITY);
                 return true;
@@ -86,25 +85,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
                 Intent intent = new Intent(MainActivity.this, ContactDetailActivity.class);
-                if(position == 0) {//1º contacto
+                for (int i = 0; listContact.size() > i; i++) {
+                    if (position == i) {// Contact
                     intent.putExtra("Contact", listContact.get(position));
                     startActivity(intent);
                     finish();
-                }
-                if(position == 1) {//2º contacto
-                    intent.putExtra("Contact", listContact.get(position));
-                    startActivity(intent);
-                    finish();
-                }
-                if(position == 2) {//3º contacto
-                    intent.putExtra("Contact", listContact.get(position));
-                    startActivity(intent);
-                    finish();
-                }
-                if(position == 3) {//4º contacto
-                    intent.putExtra("Contact", listContact.get(position));
-                    startActivity(intent);
-                    finish();
+                    }
                 }
             }
         };
