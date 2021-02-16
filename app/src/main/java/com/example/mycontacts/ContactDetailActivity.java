@@ -1,9 +1,12 @@
 package com.example.mycontacts;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import android.os.PersistableBundle;
 import android.view.KeyEvent;
 import android.Manifest;
 import android.content.Intent;
@@ -92,6 +95,7 @@ public class ContactDetailActivity extends AppCompatActivity {
                 //   i.setData(Uri.parse("malito:"));
                 i.putExtra(Intent.EXTRA_EMAIL,textEmail.getText());
                 startActivity(Intent.createChooser(i, "Email"));
+                finish();
             }
         });
     }

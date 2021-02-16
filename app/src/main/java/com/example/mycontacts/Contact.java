@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 public class Contact implements Serializable {
 
+    private int Foto;
     private String nombre;
     private String phone;
     private String email;
 
-    public Contact(String nombre, String phone, String email) {
+    public Contact(int foto,String nombre, String phone, String email) {
+        Foto = foto;
         this.nombre = nombre;
         this.phone = phone;
         this.email = email;
@@ -40,6 +42,9 @@ public class Contact implements Serializable {
         this.email = email;
     }
 
+    public int getFoto() {
+        return Foto;
+    }
     @Override
     public String toString() {
         return nombre;

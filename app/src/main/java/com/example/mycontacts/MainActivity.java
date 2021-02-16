@@ -1,12 +1,16 @@
 package com.example.mycontacts;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -15,12 +19,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Contact> listContact;
     private Agenda agenda;
-    private ListView list_contacts;
+    private RecyclerView rvListContact;
     private static final int LAUNCH_SECOND_ACTIVITY = 1;
 
     @Override
@@ -28,13 +34,39 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //instancaimos el arrayList
-        agenda = new Agenda();
-        listContact = agenda.getListContact();
+        if(savedInstanceState!=null) {
+            //recogemos las sesiones
+            listContact = (ArrayList<Contact>) savedInstanceState.getSerializable("listContact");
+            agenda = new Agenda();
+            agenda.setListContact(listContact);
+        }else if(savedInstanceState==null) {
+            //instancaimos el arrayList
+            agenda = new Agenda();
+            listContact = agenda.getListContact();
+        }
 
         aniadimosMenu();
-        rellenarListView();
-        listViewEvent();
+        recyclerView();
+    }
+
+    private void recyclerView() {
+        rvListContact = (RecyclerView) findViewById(R.id.rvListContact);
+        //añado layout de como se va a ver
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        rvListContact.setLayoutManager(linearLayoutManager);
+        //añado adaptador
+        ContactoAdapter adapter = new ContactoAdapter(listContact, this);
+        rvListContact.setAdapter(adapter);
+    }
+
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //guardadmos las sesiones
+        outState.putSerializable("listContact", listContact);
+        Toast.makeText(this, "metodo onSaveInstanceState", Toast.LENGTH_SHORT).show();
     }
 
     private void aniadimosMenu() {
@@ -43,29 +75,21 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar1);
 
         //añadimos la accion a los items del menu
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+       // ActionBar actionBar = getSupportActionBar();
+       // actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-
-    /**
-     * metodo para crear el menu y sus items
-     * @param menu
-     * @return
-     */
-    public boolean onCreateOptionsMenu(Menu menu){
+  /*
+  public boolean onCreateOptionsMenu(Menu menu){
+        //metodo para crear el menu y sus items
         //añadimos el menu el add
         getMenuInflater().inflate(R.menu.menu_add, menu);
 
-        return super.onCreateOptionsMenu(menu);
-    }
+      return super.onCreateOptionsMenu(menu);
+   }
 
-    /**
-     * metodo para saber la opcion seleccionada de los items del menu
-     * @param item
-     * @return
-     */
-    public boolean onOptionsItemSelected(MenuItem item){
+  public boolean onOptionsItemSelected(MenuItem item){
+        //metodo para saber la opcion seleccionada de los items del menu
         switch (item.getItemId()){
             case R.id.action_create_order: //si pulsamos en el +
                 Intent i = new Intent(this, NewContactActivity.class);
@@ -75,34 +99,8 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+*/
 
-    /**
-     * metodo que escuha las acciones del listView
-     */
-    private void listViewEvent() {
-        //creaccion del listener
-        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> listView, View itemView, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, ContactDetailActivity.class);
-                for (int i = 0; listContact.size() > i; i++) {
-                    if (position == i) {// Contact
-                    intent.putExtra("Contact", listContact.get(position));
-                    startActivity(intent);
-                    finish();
-                    }
-                }
-            }
-        };
-        //asignamos el listener creado a la ListView
-        list_contacts.setOnItemClickListener(itemClickListener);
-    }
-
-    private void rellenarListView() {
-        list_contacts = (ListView) findViewById(R.id.list_contacts);
-        ArrayAdapter<Contact> adapter = new ArrayAdapter<Contact>(MainActivity.this, android.R.layout.simple_list_item_1, listContact);
-        list_contacts.setAdapter(adapter);
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -132,5 +130,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-
 }
