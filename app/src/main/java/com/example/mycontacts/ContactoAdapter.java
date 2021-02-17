@@ -39,7 +39,7 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
         contactoViewHolder.tvCvTelefono.setText(c1.getPhone());
         contactoViewHolder.tvCvEmail.setText(c1.getEmail());
 
-        //añado listener
+        //añado listener detailContact
         contactoViewHolder.imgCvFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +52,13 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
                 }
             }
         });
+        //añado listener dar like
+        contactoViewHolder.imgCVHeart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(activity,"Has pulsado like a "+c1.getNombre(),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -61,6 +68,7 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
 
     public static class ContactoViewHolder extends RecyclerView.ViewHolder {
         private ImageView imgCvFoto;
+        private ImageView imgCVHeart;
         private TextView tvCvNombre;
         private TextView tvCvTelefono;
         private TextView tvCvEmail;
@@ -69,6 +77,7 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
             super(itemView);
 
             imgCvFoto = (ImageView) itemView.findViewById(R.id.imgCvFoto);
+            imgCVHeart = (ImageView) itemView.findViewById(R.id.imgCVHeart);
             tvCvNombre = (TextView) itemView.findViewById(R.id.tvCvNombre);
             tvCvTelefono = (TextView) itemView.findViewById(R.id.tvCvTelefono);
             tvCvEmail = (TextView) itemView.findViewById(R.id.tvCvEmail);

@@ -45,7 +45,12 @@
             android:text="correo@gmail.com"
             android:textSize="15sp"
             />
+
+        <ImageView
+            android:id="@+id/imgCVHeart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:src="@drawable/icon_heart"/>
     </LinearLayout>
-
-
 </androidx.cardview.widget.CardView>
